@@ -101,7 +101,7 @@ jdocs = {"customcards":         {
 }
 }
 
-db = SimpleBase("test_1c", path=suClass.get_simplebase_dir(), timeout=200)
+db = SimpleBase("liteDB", path=suClass.get_simplebase_dir(), timeout=200)
 
 
 def inventory_list_open(hashMap, _files=None, _data=None):
