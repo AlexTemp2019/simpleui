@@ -94,7 +94,7 @@ jdocs = {"customcards":         {
                     "width": "wrap_content",
                     "height": "wrap_content",
                     "weight": 0
-                }
+                    }
         ]
     }
 
@@ -124,6 +124,26 @@ def inventory_list_open(hashMap, _files=None, _data=None):
     return hashMap
 
 
+def orders_list_open(hashMap, _files=None, _data=None):
+
+    jdocs["customcards"]["cardsdata"] = []
+    documents = db['orders'].all()
+
+    for doc in documents:
+        card = {
+            "key": doc.get("_id"),
+            "string1": doc.get("name"),
+            "string2": doc.get("warehouse"),
+            "string3": doc.get("1C")
+        }
+
+        jdocs["customcards"]["cardsdata"].append(card)
+
+    hashMap.put("cards", json.dumps(jdocs, ensure_ascii=False))
+
+    return hashMap
+
+
 document = None
 
 
@@ -133,6 +153,16 @@ def inventory_list_click(hashMap, _files=None, _data=None):
     document = db['inventory'].get(hashMap.get("selected_card_key"))
 
     hashMap.put("ShowScreen", "Инвентаризация")
+
+    return hashMap
+
+
+def orders_list_open(hashMap, _files=None, _data=None):
+    global document
+
+    document = db['orders'].get(hashMap.get("selected_card_key"))
+
+    hashMap.put("ShowScreen", "Сборка заказа")
 
     return hashMap
 
@@ -337,19 +367,4 @@ def inventory_input(hashMap, _files=None, _data=None):
             document["goods"][pos]["qty"] = hashMap.get("qty")
             db['inventory'].insert(document, upsert=True)
 
-    return hashMap
-
-
-def sample1_on_input(hashMap, _files=None, _data=None):
-    if hashMap.get("listener") == "btn_res":
-        hashMap.put("result", str(int(hashMap.get("a"))+int(hashMap.get("b"))))
-
-    return hashMap
-
-
-def sample1_on_create(hashMap, _files=None, _data=None):
-    if not hashMap.containsKey("a"):
-        hashMap.put("a", "")
-    if not hashMap.containsKey("b"):
-        hashMap.put("b", "")
     return hashMap
