@@ -157,7 +157,7 @@ def inventory_list_click(hashMap, _files=None, _data=None):
     return hashMap
 
 
-def orders_list_open(hashMap, _files=None, _data=None):
+def orders_list_click(hashMap, _files=None, _data=None):
     global document
 
     document = db['orders'].get(hashMap.get("selected_card_key"))
