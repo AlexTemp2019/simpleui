@@ -94,7 +94,7 @@ jdocs = {"customcards":         {
                     "width": "wrap_content",
                     "height": "wrap_content",
                     "weight": 0
-                }
+            }
         ]
     }
 
@@ -566,5 +566,16 @@ def orders_input(hashMap, _files=None, _data=None):
         if pos > -1:
             document["goods"][pos]["qty"] = hashMap.get("qty")
             db['inventory'].insert(document, upsert=True)
+
+    return hashMap
+
+
+def clear_orders_table(hashMap, _files=None, _data=None):
+    db['orders'].clear()
+    return hashMap
+
+
+def clear_inventory_table(hashMap, _files=None, _data=None):
+    db['inventory'].clear()
 
     return hashMap
