@@ -94,7 +94,7 @@ jdocs = {"customcards":         {
                     "width": "wrap_content",
                     "height": "wrap_content",
                     "weight": 0
-                    }
+                }
         ]
     }
 
@@ -583,7 +583,7 @@ def clear_inventory_table(hashMap, _files=None, _data=None):
 
 def add_to_base(hashMap, _files=None, _data=None):
     if hashMap.get("current_operation_name") == "Загрузка заказов":
-        hashMap.put("toast", "это Загрузка")
+        # hashMap.put("toast", "это Загрузка")
         collection = "orders"
     else:
         collection = "inventory"
