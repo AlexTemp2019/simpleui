@@ -584,9 +584,9 @@ def clear_inventory_table(hashMap, _files=None, _data=None):
 def add_to_base(hashMap, _files=None, _data=None):
     if hashMap.get("current_operation_name") == "Загрузка заказов":
         # hashMap.put("toast", "это Загрузка")
-        collection = "orders"
+        collection = 'orders'
     else:
-        collection = "inventory"
+        collection = 'inventory'
 
     set = []
 
