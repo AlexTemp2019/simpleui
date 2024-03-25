@@ -579,3 +579,21 @@ def clear_inventory_table(hashMap, _files=None, _data=None):
     db['inventory'].clear()
 
     return hashMap
+
+def add_to_base(hashMap, _files=None, _data=None):
+    if hashMap.current_operation_name == "Загрузка заказов":
+        collection = "orders"
+    else:
+        collection = "inventory"
+
+    set=[]
+
+    for line in hashMap["goods"]:
+        if 'cb1' in line and line.cb1:
+            set.append(line.doc_bd)
+
+    db[collection].insert(document, upsert=True)
+
+    hashMap.put("toast", 'Загрузка через Пайтон') 
+
+    return hashMap
