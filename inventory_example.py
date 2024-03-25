@@ -590,7 +590,7 @@ def add_to_base(hashMap, _files=None, _data=None):
 
     set = []
 
-    for line in hashMap["cards"]["customcards"]["cardsdata"]:
+    for line in document["goods"]:
         if 'cb1' in line and line.cb1:
             set.append(line.doc_bd)
 
