@@ -588,11 +588,10 @@ def add_to_base(hashMap, _files=None, _data=None):
     else:
         collection = 'inventory'
 
-    set = []
-
-    hashMap.put("toast", collection)
+    set = []  
 
     for line in hashMap["cards"]["customcards"]["cardsdata"]:
+        hashMap.put("toast", line.cb1)
         if 'cb1' in line and line.cb1:
             set.append(line.doc_bd)
 
