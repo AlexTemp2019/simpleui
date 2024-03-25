@@ -589,12 +589,12 @@ def add_to_base(hashMap, _files=None, _data=None):
         collection = 'inventory'
 
     set = []
-    hashMap.put("toast", hashMap["cards"]["customcards"]["cardsdata"])
-    # for line in hashMap["cards"]["customcards"]["cardsdata"]:
-    #     hashMap.put("toast", line.cb1)
-    #     if 'cb1' in line and line.cb1:
-    #         set.append(line.doc_bd)
 
-    # db[collection].insert(set, upsert=True)
+    for line in hashMap["cards"]["customcards"]["cardsdata"]:
+
+        if line.cb1 == True:
+            set.append(line.doc_bd)
+
+    db[collection].insert(json.dumps(set, ensure_ascii=False), upsert=True)
 
     return hashMap
