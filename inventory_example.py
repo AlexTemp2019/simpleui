@@ -94,7 +94,7 @@ jdocs = {"customcards":         {
                     "width": "wrap_content",
                     "height": "wrap_content",
                     "weight": 0
-                    }
+                }
         ]
     }
 
@@ -588,13 +588,13 @@ def add_to_base(hashMap, _files=None, _data=None):
     else:
         collection = 'inventory'
 
-    set = []  
+    set = []
+    hashMap.put("toast", hashMap["cards"]["customcards"]["cardsdata"])
+    # for line in hashMap["cards"]["customcards"]["cardsdata"]:
+    #     hashMap.put("toast", line.cb1)
+    #     if 'cb1' in line and line.cb1:
+    #         set.append(line.doc_bd)
 
-    for line in hashMap["cards"]["customcards"]["cardsdata"]:
-        hashMap.put("toast", line.cb1)
-        if 'cb1' in line and line.cb1:
-            set.append(line.doc_bd)
-
-    db[collection].insert(set, upsert=True)
+    # db[collection].insert(set, upsert=True)
 
     return hashMap
