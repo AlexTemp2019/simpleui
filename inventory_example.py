@@ -94,7 +94,7 @@ jdocs = {"customcards":         {
                     "width": "wrap_content",
                     "height": "wrap_content",
                     "weight": 0
-                }
+            }
         ]
     }
 
@@ -595,8 +595,10 @@ def add_to_base(hashMap, _files=None, _data=None):
         if line.cb1 == True:
             set.append(line.doc_bd)
 
-    hashMap.put("toast", json.dumps(set, ensure_ascii=False))
+    # hashMap.put("toast", json.dumps(set, ensure_ascii=False))
 
-    # db[collection].insert(json.dumps(set, ensure_ascii=False), upsert=True)
+    result = db[collection].insert(json.dumps(
+        set, ensure_ascii=False), upsert=True)
+    hashMap.put("toast", result)
 
     return hashMap
