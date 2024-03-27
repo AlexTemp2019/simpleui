@@ -592,7 +592,7 @@ def add_to_base(hashMap, _files=None, _data=None):
     cards = json.loads(hashMap.get("cards"))
     goods = cards["customcards"]["cardsdata"]
     for line in goods:
-        if 'cb1' in line and line['cb1'] == 'true':
+        if 'cb1' in line and (line['cb1'] == 'true' or line['cb1'] == True):
             set.append(line['doc_bd'])
 
     db[collection].insert(json.dumps(set, ensure_ascii=False), upsert=True)
