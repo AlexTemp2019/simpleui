@@ -597,8 +597,7 @@ def add_to_base(hashMap, _files=None, _data=None):
 
     hashMap.put("toast", "Данные получены")
 
-    db[collection].insert(json.dumps(
-        set, ensure_ascii=False), upsert=True)
-    hashMap.put("toast", "Данные в базе")
+    # db[collection].insert(json.dumps(set, ensure_ascii=False), upsert=True)
+    # hashMap.put("toast", "Данные в базе")
 
     return hashMap
