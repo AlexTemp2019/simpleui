@@ -588,7 +588,7 @@ def add_to_base(hashMap, _files=None, _data=None):
     else:
         collection = 'inventory'
 
-    set = []
+    set = ['1']
     cards = json.loads(hashMap.get("cards"))
     goods = cards["customcards"]["cardsdata"]
     for line in goods:
