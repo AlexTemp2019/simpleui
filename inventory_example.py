@@ -583,7 +583,7 @@ def clear_inventory_table(hashMap, _files=None, _data=None):
 
 def add_to_base(hashMap, _files=None, _data=None):
     if hashMap.get("current_operation_name") == "Загрузка заказов":
-        hashMap.put("toast", "это Загрузка")
+        # hashMap.put("toast", "это Загрузка")
         collection = 'orders'
     else:
         collection = 'inventory'
@@ -595,7 +595,7 @@ def add_to_base(hashMap, _files=None, _data=None):
         if 'cb1' in line and line['cb1'] == True:
             set.append(line['doc_bd'])
 
-    # hashMap.put("toast", "Данные получены")
+    hashMap.put("toast", "Данные получены")
 
     # db[collection].insert(json.dumps(set, ensure_ascii=False), upsert=True)
     # hashMap.put("toast", "Данные в базе")
