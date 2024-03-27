@@ -589,7 +589,7 @@ def add_to_base(hashMap, _files=None, _data=None):
         collection = 'inventory'
 
     set = []
-    cards = json.loads(hashMap["cards"])
+    cards = json.loads(hashMap.get("cards"))
     goods = cards["customcards"]["cardsdata"]
     for line in goods:
         if 'cb1' in line and line['cb1'] == True:
@@ -597,7 +597,7 @@ def add_to_base(hashMap, _files=None, _data=None):
 
     hashMap.put("toast", "Данные получены")
 
-    # db[collection].insert(json.dumps(set, ensure_ascii=False), upsert=True)
-    # hashMap.put("toast", "Данные в базе")
+    db[collection].insert(json.dumps(set, ensure_ascii=False), upsert=True)
+    hashMap.put("toast", "Данные в базе")
 
     return hashMap

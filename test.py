@@ -1,4 +1,20 @@
 import json
+# import android
+# from pysimplebase import SimpleBase
+# from ru.travelfood.simple_ui import SimpleUtilites as suClass
+
+# set = []
+# cards = json.loads(hashMap.get("cards"))
+# goods = cards["customcards"]["cardsdata"]
+# for line in goods:
+#     if 'cb1' in line and line['cb1'] == True:
+#         set.append(line['doc_bd'])
+
+# android.toast("Данные получены")
+# db = SimpleBase("liteDB", path=suClass.get_simplebase_dir(), timeout=200)
+# android.toast("Конект к базе")
+# db["orders"].insert(json.dumps(set, ensure_ascii=False), upsert=True)
+# android.toast("Данные в базе")
 
 
 def add_to_base():
@@ -154,8 +170,8 @@ def add_to_base():
     for line in goods:
         if 'cb1' in line and line['cb1'] == True:
             set.append(line['doc_bd'])
-
-    return set
+    answer = json.dumps(set, ensure_ascii=False)
+    a = 0 type(set)
 
 
 add_to_base()
