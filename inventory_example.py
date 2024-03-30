@@ -128,8 +128,8 @@ def orders_list_open(hashMap, _files=None, _data=None):
 
     jdocs["customcards"]["cardsdata"] = []
     documents = db['orders'].all()
-    hashMap.put("toast", type(documents))
-    hashMap.put("toast", documents)
+    hashMap.put("toast", json.dumps(type(documents), ensure_ascii=False))
+    hashMap.put("toast", json.dumps(documents, ensure_ascii=False))
 
     for doc in documents:
         card = {
