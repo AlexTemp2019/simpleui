@@ -1,20 +1,43 @@
 import json
-# import android
-# from pysimplebase import SimpleBase
-# from ru.travelfood.simple_ui import SimpleUtilites as suClass
+import android
+from pysimplebase import SimpleBase
+from ru.travelfood.simple_ui import SimpleUtilites as suClass
 
-# set = []
-# cards = json.loads(hashMap.get("cards"))
-# goods = cards["customcards"]["cardsdata"]
-# for line in goods:
-#     if 'cb1' in line and line['cb1'] == True:
-#         set.append(line['doc_bd'])
+order = []
+cards = json.loads(hashMap.get("cards"))
+goods = cards["customcards"]["cardsdata"]
+for line in goods:
+    if 'cb1' in line and (line['cb1'] == 'true' or line['cb1'] == True):
+        order.append(line['doc_bd'])
 
-# android.toast("Данные получены")
-# db = SimpleBase("liteDB", path=suClass.get_simplebase_dir(), timeout=200)
-# android.toast("Конект к базе")
-# db["orders"].insert(json.dumps(set, ensure_ascii=False), upsert=True)
-# android.toast("Данные в базе")
+ordertxt = json.dumps(order, ensure_ascii=False)
+android.toast(ordertxt)
+android.toast("Данные получены")
+db = SimpleBase("liteDB", path=suClass.get_simplebase_dir(), timeout=200)
+android.toast("Конект к базе")
+db["orders"].insert(ordertxt, upsert=True)
+android.toast("Данные в базе")
+
+
+hashMap.put("myset", ordertxt)
+android.stop(hashMap)
+
+
+
+
+
+import json
+import android
+from pysimplebase import SimpleBase
+from ru.travelfood.simple_ui import SimpleUtilites as suClass
+
+android.toast("Конект к базе старт")
+db = SimpleBase("liteDB", path=suClass.get_simplebase_dir(), timeout=200)
+android.toast("Конект к базе финиш")
+doc = db['orders'].all()
+android.toast("Запрос выполнен")
+android.toast(json.dumps(doc, ensure_ascii=False))
+android.toast("Конец")
 
 
 def add_to_base():
