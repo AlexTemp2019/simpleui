@@ -596,7 +596,7 @@ def add_to_base(hashMap, _files=None, _data=None):
             doc.append(line['doc_bd'])
     doc_txt = json.dumps(doc, ensure_ascii=False)
     hashMap.put("toast", doc_txt)
-    db[collection].insert(doc_txt, upsert=True)
+    db['orders'].insert(doc_txt, upsert=True)
     hashMap.put("toast", "Данные в базе")
 
     return hashMap
