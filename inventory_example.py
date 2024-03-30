@@ -594,8 +594,9 @@ def add_to_base(hashMap, _files=None, _data=None):
     for line in goods:
         if 'cb1' in line and (line['cb1'] == 'true' or line['cb1'] == True):
             doc.append(line['doc_bd'])
-    hashMap.put("toast", json.dumps(doc, ensure_ascii=False))
-    db[collection].insert(doc, upsert=True)
+    doc_txt = json.dumps(doc, ensure_ascii=False)
+    hashMap.put("toast", doc_txt)
+    db[collection].insert(doc_txt, upsert=True)
     hashMap.put("toast", "Данные в базе")
 
     return hashMap
