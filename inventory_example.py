@@ -94,7 +94,7 @@ jdocs = {"customcards":         {
                     "width": "wrap_content",
                     "height": "wrap_content",
                     "weight": 0
-                }
+            }
         ]
     }
 
@@ -128,6 +128,8 @@ def orders_list_open(hashMap, _files=None, _data=None):
 
     jdocs["customcards"]["cardsdata"] = []
     documents = db['orders'].all()
+    hashMap.put("toast", type(documents))
+    hashMap.put("toast", documents)
 
     for doc in documents:
         card = {
