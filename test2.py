@@ -4,6 +4,124 @@ from pathlib import Path
 import json
 import android
 
+jdocs = {"customcards":         {
+    "options": {
+        "search_enabled": True,
+        "save_position": True
+    },
+
+    "layout": {
+        "type": "LinearLayout",
+        "orientation": "vertical",
+        "height": "match_parent",
+        "width": "match_parent",
+        "weight": "0",
+        "Elements": [
+                {
+                    "type": "LinearLayout",
+                    "orientation": "horizontal",
+                    "height": "wrap_content",
+                    "width": "match_parent",
+                    "weight": "0",
+                    "Elements": [
+
+                        {
+                            "type": "LinearLayout",
+                            "orientation": "vertical",
+                            "height": "wrap_content",
+                            "width": "match_parent",
+                            "weight": "1",
+                            "Elements": [
+                                {
+                                    "type": "TextView",
+                                    "show_by_condition": "",
+                                    "Value": "@string1",
+                                    "NoRefresh": False,
+                                    "document_type": "",
+                                    "mask": "",
+                                    "Variable": ""
+                                },
+                                {
+                                    "type": "TextView",
+                                    "show_by_condition": "",
+                                    "Value": "@string2",
+                                    "NoRefresh": False,
+                                    "document_type": "",
+                                    "mask": "",
+                                    "Variable": ""
+                                },
+                                {
+                                    "type": "TextView",
+                                    "show_by_condition": "",
+                                    "Value": "@string3",
+                                    "NoRefresh": False,
+                                    "document_type": "",
+                                    "mask": "",
+                                    "Variable": ""
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TextView",
+                            "show_by_condition": "",
+                            "Value": "@val",
+                            "NoRefresh": False,
+                            "document_type": "",
+                            "mask": "",
+                            "Variable": "",
+                            "TextSize": "16",
+                            "TextColor": "#DB7093",
+                            "TextBold": True,
+                            "TextItalic": False,
+                            "BackgroundColor": "",
+                            "width": "match_parent",
+                            "height": "wrap_content",
+                            "weight": 2
+                        }
+                    ]
+                },
+            {
+                    "type": "TextView",
+                    "show_by_condition": "",
+                    "Value": "@descr",
+                    "NoRefresh": False,
+                    "document_type": "",
+                    "mask": "",
+                    "Variable": "",
+                    "TextSize": "-1",
+                    "TextColor": "#6F9393",
+                    "TextBold": False,
+                    "TextItalic": True,
+                    "BackgroundColor": "",
+                    "width": "wrap_content",
+                    "height": "wrap_content",
+                    "weight": 0
+            }
+        ]
+    }
+
+}
+}
+
+jdocs["customcards"]["cardsdata"] = []
+db = Pelican("liteDB", path=os.path.dirname(Path(__file__).parent))
+documents = db['orders'].all()
+# hashMap.put("toast", json.dumps(type(documents), ensure_ascii=False))
+hashMap.put("toast", json.dumps(documents, ensure_ascii=False))
+
+for doc in documents:
+    card = {
+        "key": doc.get("_id"),
+        "string1": doc.get("name"),
+        "string2": doc.get("warehouse"),
+        "string3": doc.get("client")
+    }
+
+    jdocs["customcards"]["cardsdata"].append(card)
+
+hashMap.put("cards", json.dumps(jdocs, ensure_ascii=False))
+
+
 db = Pelican("liteDB", path=os.path.dirname(Path(__file__).parent))
 
 android.toast("Конект к базе")
@@ -186,3 +304,13 @@ android.toast(comandJSON)
 
 hashMap.put("RunSimpleBase", comandJSON)
 android.toast("Данные переданы")
+
+
+db = Pelican("liteDB", path=os.path.dirname(Path(__file__).parent))
+
+android.toast("Конект к базе")
+
+res = db["orders"].all()
+
+
+android.toast(str(res))
