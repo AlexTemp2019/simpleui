@@ -301,9 +301,9 @@ def inventory_open(hashMap, _files=None, _data=None):
              "qty_fact": line.get("qty")
 
              }
-        j["customtable"]["tabledata"].append(l)
+        jtable["customtable"]["tabledata"].append(l)
 
-    hashMap.put("table", json.dumps(j, ensure_ascii=False))
+    hashMap.put("table", json.dumps(jtable, ensure_ascii=False))
 
     return hashMap
 
@@ -319,9 +319,9 @@ def orders_open(hashMap, _files=None, _data=None):
              "qty_fact": line.get("qty")
 
              }
-        j["customtable"]["tabledata"].append(l)
+        jtable["customtable"]["tabledata"].append(l)
 
-    hashMap.put("table", json.dumps(j, ensure_ascii=False))
+    hashMap.put("table", json.dumps(jtable, ensure_ascii=False))
 
     return hashMap
 
