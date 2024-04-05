@@ -1,3 +1,6 @@
+from ru.travelfood.simple_ui import SimpleUtilites as suClass
+from pysimplebase import SimpleBase
+import android
 import json
 # import android
 # from pysimplebase import SimpleBase
@@ -128,7 +131,7 @@ def add_to_base():
                         "TextItalic": true,
                         "BackgroundColor": "",
                         "width": "wrap_content",
-                        "height": "wrap_content",
+                        "height": "wrap_content",ё
                         "weight": 0
                     }
                 ]
@@ -184,14 +187,149 @@ def add_to_base():
             ]
         }
     }'''
-    set = []
+    doc = []
     cards = json.loads(y)
     goods = cards["customcards"]["cardsdata"]
     for line in goods:
-        if 'cb1' in line and line['cb1'] == True:
-            set.append(line['doc_bd'])
-    answer = json.dumps(set, ensure_ascii=False)
-    a = 0 type(answer)
+        if 'cb1' in line and (line['cb1'] == 'true' or line['cb1'] == True):
+            doc.append(line['doc_bd'])
+    doc_txt = json.dumps(doc, ensure_ascii=False)
+    hashMap.put("toast", doc_txt)
+    db['orders'].insert(doc, upsert=True)
+    hashMap.put("toast", "Данные в базе")
+
+    return hashMap
 
 
 add_to_base()
+
+
+db = SimpleBase("liteDB", path=suClass.get_simplebase_dir(), timeout=200)
+android.toast("Конект к базе")
+
+z = [
+    {
+        "_id": "ac48584f-a0bb-11ea-86ca-782bcbe5684f",
+        "name": "Заказ покупателя НМ00-000003 от 25.05.2020",
+        "warehouse": "Адміністрація",
+        "client": "Рута, ТОВ",
+        "goods": [
+            {
+                "barcode": "9785222192672",
+                "nom": "Шафа-купе",
+                "unit": "шт",
+                "qty": 0,
+                "qty_plan": 1
+            }
+        ]
+    },
+    {
+        "_id": "ac485865-a0bb-11ea-86ca-782bcbe5684f",
+        "name": "Заказ покупателя ОМ00-000015 от 09.03.2020",
+        "warehouse": "Адміністрація",
+        "client": "Таурег, ПП",
+        "goods": [
+            {
+                "barcode": "9786177198238",
+                "nom": "Журнальний столик (індивідуальне замовлення)",
+                "unit": "шт",
+                "qty": 0,
+                "qty_plan": 1
+            }
+        ]
+    }
+]
+
+
+db["orders"].insert(z, upsert=True)
+android.toast("Данные в liteDB")
+
+
+db = SimpleBase("liteDB", path=suClass.get_simplebase_dir(), timeout=200)
+android.toast("Конект к базе")
+
+z = [
+    {
+        "_id": "ac48584f-a0bb-11ea-86ca-782bcbe5684f",
+        "name": "Заказ покупателя НМ00-000003 от 25.05.2020",
+        "warehouse": "Адміністрація",
+        "client": "Рута, ТОВ",
+        "goods": [
+            {
+                "barcode": "9785222192672",
+                "nom": "Шафа-купе",
+                "unit": "шт",
+                "qty": 0,
+                "qty_plan": 1
+            }
+        ]
+    },
+    {
+        "_id": "ac485865-a0bb-11ea-86ca-782bcbe5684f",
+        "name": "Заказ покупателя ОМ00-000015 от 09.03.2020",
+        "warehouse": "Адміністрація",
+        "client": "Таурег, ПП",
+        "goods": [
+            {
+                "barcode": "9786177198238",
+                "nom": "Журнальний столик (індивідуальне замовлення)",
+                "unit": "шт",
+                "qty": 0,
+                "qty_plan": 1
+            }
+        ]
+    }
+]
+
+comand = [{
+    "database": "liteDB",
+    "collection": "orders",
+    "command": "upsert",
+    "value": z
+}]
+
+comandJSON = [
+    {
+        "database": "liteDB",
+        "collection": "orders",
+        "command": "upsert",
+        "value": [
+            {
+                "_id": "ac48584f-a0bb-11ea-86ca-782bcbe5684f",
+                "name": "Заказ покупателя НМ00-000003 от 25.05.2020",
+                "warehouse": "Адміністрація",
+                "client": "Рута, ТОВ",
+                "goods": [
+                    {
+                        "barcode": "9785222192672",
+                        "nom": "Шафа-купе",
+                        "unit": "шт",
+                        "qty": 0,
+                        "qty_plan": 1
+                    }
+                ]
+            },
+            {
+                "_id": "ac485865-a0bb-11ea-86ca-782bcbe5684f",
+                "name": "Заказ покупателя ОМ00-000015 от 09.03.2020",
+                "warehouse": "Адміністрація",
+                "client": "Таурег, ПП",
+                "goods": [
+                    {
+                        "barcode": "9786177198238",
+                        "nom": "Журнальний столик (індивідуальне замовлення)",
+                        "unit": "шт",
+                        "qty": 0,
+                        "qty_plan": 1
+                    }
+                ]
+            }
+        ]
+    }
+]
+
+android.toast(comandJSON)
+
+
+hashMap.put("RunSimpleBase", comandJSON)
+android.toast("Данные переданы")

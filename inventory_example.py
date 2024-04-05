@@ -1,6 +1,7 @@
+from pelicandb import Pelican
+import os
+from pathlib import Path
 import json
-from pysimplebase import SimpleBase
-from ru.travelfood.simple_ui import SimpleUtilites as suClass
 
 jdocs = {"customcards":         {
     "options": {
@@ -94,14 +95,15 @@ jdocs = {"customcards":         {
                     "width": "wrap_content",
                     "height": "wrap_content",
                     "weight": 0
-            }
+                }
         ]
     }
 
 }
 }
 
-db = SimpleBase("liteDB", path=suClass.get_simplebase_dir(), timeout=200)
+
+db = Pelican("liteDB", path=os.path.dirname(Path(__file__).parent))
 
 
 def inventory_list_open(hashMap, _files=None, _data=None):
