@@ -1,9 +1,10 @@
+from pelicandb import Pelican
+import os
+from pathlib import Path
 import json
 import android
-from pysimplebase import SimpleBase
-from ru.travelfood.simple_ui import SimpleUtilites as suClass
 
-db = SimpleBase("liteDB", path=suClass.get_simplebase_dir(), timeout=200)
+db = Pelican("liteDB", path=os.path.dirname(Path(__file__).parent))
 
 android.toast("Конект к базе")
 
@@ -40,13 +41,13 @@ z = [
     }
 ]
 
-res = db['orders'].insert(z, upsert=True, no_index=True)
+res = db["orders"].insert(
+    {"name": "Персик", "price": 100, "_id": "2"}, upsert=True)
 
-db["orders"].insert(z, upsert=True)
 android.toast(str(res))
 
 
-db = SimpleBase("liteDB", path=suClass.get_simplebase_dir(), timeout=200)
+db = Pelican("liteDB", path=os.path.dirname(Path(__file__).parent))
 android.toast("Конект к базе")
 
 z = [

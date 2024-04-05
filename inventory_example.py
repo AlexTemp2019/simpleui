@@ -129,6 +129,7 @@ def inventory_list_open(hashMap, _files=None, _data=None):
 def orders_list_open(hashMap, _files=None, _data=None):
 
     jdocs["customcards"]["cardsdata"] = []
+    db = Pelican("liteDB", path=os.path.dirname(Path(__file__).parent))
     documents = db['orders'].all()
     # hashMap.put("toast", json.dumps(type(documents), ensure_ascii=False))
     hashMap.put("toast", json.dumps(documents, ensure_ascii=False))
@@ -600,7 +601,7 @@ def add_to_base(hashMap, _files=None, _data=None):
             doc.append(line['doc_bd'])
     doc_txt = json.dumps(doc, ensure_ascii=False)
     hashMap.put("toast", doc_txt)
-    db['orders'].insert(doc, upsert=True)
-    hashMap.put("toast", "Данные в базе")
+    res = db['orders'].insert(doc, upsert=True)
+    hashMap.put("toast", str(res))
 
     return hashMap
