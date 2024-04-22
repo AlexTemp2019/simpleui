@@ -313,7 +313,6 @@ def inventory_open(hashMap, _files=None, _data=None):
              "barcode": line.get("barcode"),
              "qty": line.get("qty_plan"),
              "qty_fact": line.get("qty")
-
              }
         jtable["customtable"]["tabledata"].append(l)
 
