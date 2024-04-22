@@ -460,7 +460,7 @@ def add_to_base(hashMap, _files=None, _data=None):
     cards = json.loads(hashMap.get("cards"))
     goods = cards["customcards"]["cardsdata"]
     for line in goods:
-        if 'cb1' in line and (line['cb1'] == 'true' or line['cb1'] == True):
+        if 'cb1' in line and (line['cb1'] == 'true' or True):
             doc.append(line['doc_bd'])
     doc_txt = json.dumps(doc, ensure_ascii=False)
     hashMap.put("toast", doc_txt)
