@@ -151,6 +151,19 @@ jtable = {
                                       {
                                           "type": "TextView",
                                           "show_by_condition": "",
+                                          "Value": "@charac",
+                                          "height": "wrap_content",
+                                          "width": "match_parent",
+                                          "TextSize": "16",
+
+                                          "weight": "1",
+                                          "TextBold": True,
+                                          "gravity_horizontal": "left"
+                                      },
+
+                                      {
+                                          "type": "TextView",
+                                          "show_by_condition": "",
                                           "Value": "@barcode",
                                           "height": "wrap_content",
                                           "width": "match_parent",
@@ -296,6 +309,7 @@ def inventory_open(hashMap, _files=None, _data=None):
 
     for line in document["goods"]:
         l = {"sku": line.get("nom"),
+             "charac": line.get("charac"),
              "barcode": line.get("barcode"),
              "qty": line.get("qty_plan"),
              "qty_fact": line.get("qty")
