@@ -287,6 +287,7 @@ def inventory_list_click(hashMap, _files=None, _data=None):
     global document
 
     document = db['inventory'].get(hashMap.get("selected_card_key"))
+    hashMap.put("toast", hashMap.get("selected_card_key"))
 
     hashMap.put("ShowScreen", "Инвентаризация")
 
@@ -297,6 +298,7 @@ def orders_list_click(hashMap, _files=None, _data=None):
     global document
 
     document = db['orders'].get(hashMap.get("selected_card_key"))
+    hashMap.put("toast", hashMap.get("selected_card_key"))
 
     hashMap.put("ShowScreen", "Сборка заказа")
 
