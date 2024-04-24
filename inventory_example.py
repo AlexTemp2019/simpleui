@@ -95,7 +95,7 @@ jdocs = {"customcards":         {
                     "width": "wrap_content",
                     "height": "wrap_content",
                     "weight": 0
-                    }
+                }
         ]
     }
 
@@ -484,5 +484,18 @@ def add_to_base(hashMap, _files=None, _data=None):
     db[collection].clear()
     res = db[collection].insert(doc, upsert=True)
     hashMap.put("toast", str(res))
+
+    return hashMap
+
+
+def download_from_DT(hashMap, _files=None, _data=None):
+    if hashMap.get("current_operation_name") == "Загрузка заказов":
+        hashMap.put("toast", "это Загрузка")
+        collection = 'orders'
+    else:
+        collection = 'inventory'
+
+    document = db[collection].get(hashMap.get("selected_card_key"))
+    hashMap.put("toast", json.dumps(document["goods"], ensure_ascii=False))
 
     return hashMap
