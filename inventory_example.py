@@ -95,7 +95,7 @@ jdocs = {"customcards":         {
                     "width": "wrap_content",
                     "height": "wrap_content",
                     "weight": 0
-                }
+                    }
         ]
     }
 
@@ -318,6 +318,8 @@ def inventory_open(hashMap, _files=None, _data=None):
              }
         jtable["customtable"]["tabledata"].append(l)
 
+    hashMap.put("toast", json.dumps(
+        jtable["customtable"]["tabledata"], ensure_ascii=False))
     hashMap.put("table", json.dumps(jtable, ensure_ascii=False))
 
     return hashMap
