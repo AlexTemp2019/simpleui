@@ -287,7 +287,7 @@ def inventory_list_click(hashMap, _files=None, _data=None):
     global document
 
     document = db['inventory'].get(hashMap.get("selected_card_key"))
-    hashMap.put("toast", json.dumps(document["goods"], ensure_ascii=False))
+    # hashMap.put("toast", json.dumps(document["goods"], ensure_ascii=False))
 
     hashMap.put("ShowScreen", "Инвентаризация")
 
@@ -298,7 +298,7 @@ def orders_list_click(hashMap, _files=None, _data=None):
     global document
 
     document = db['orders'].get(hashMap.get("selected_card_key"))
-    hashMap.put("toast", hashMap.get("selected_card_key"))
+    # hashMap.put("toast", hashMap.get("selected_card_key"))
 
     hashMap.put("ShowScreen", "Сборка заказа")
 
@@ -318,8 +318,8 @@ def inventory_open(hashMap, _files=None, _data=None):
              }
         jtable["customtable"]["tabledata"].append(l)
 
-    hashMap.put("toast", json.dumps(
-        jtable["customtable"]["tabledata"], ensure_ascii=False))
+    # hashMap.put("toast", json.dumps(
+        jtable["customtable"]["tabledata"], ensure_ascii = False))
     hashMap.put("table", json.dumps(jtable, ensure_ascii=False))
 
     return hashMap
@@ -480,10 +480,10 @@ def add_to_base(hashMap, _files=None, _data=None):
         if 'cb1' in line and (line['cb1'] == 'true' or True):
             doc.append(line['doc_bd'])
     doc_txt = json.dumps(doc, ensure_ascii=False)
-    hashMap.put("toast", doc_txt)
+    # hashMap.put("toast", doc_txt)
     db[collection].clear()
     res = db[collection].insert(doc, upsert=True)
-    hashMap.put("toast", str(res))
+    # hashMap.put("toast", str(res))
 
     return hashMap
 
