@@ -287,7 +287,7 @@ def inventory_list_click(hashMap, _files=None, _data=None):
     global document
 
     document = db['inventory'].get(hashMap.get("selected_card_key"))
-    hashMap.put("toast", hashMap.get("selected_card_key"))
+    hashMap.put("toast", json.dumps(document["goods"], ensure_ascii=False))
 
     hashMap.put("ShowScreen", "Инвентаризация")
 
