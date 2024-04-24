@@ -480,7 +480,7 @@ def add_to_base(hashMap, _files=None, _data=None):
     doc_txt = json.dumps(doc, ensure_ascii=False)
     hashMap.put("toast", doc_txt)
     db[collection].clear()
-    res = db[collection].insert(doc, upsert=True)
-    hashMap.put("toast", str(res))
+    # res = db[collection].insert(doc, upsert=True)
+    # hashMap.put("toast", str(res))
 
     return hashMap
