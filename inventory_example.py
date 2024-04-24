@@ -495,6 +495,6 @@ def download_from_DT(hashMap, _files=None, _data=None):
         collection = 'inventory'
 
     document = db[collection].get(hashMap.get("selected_card_key"))
-    hashMap.put("toast", json.dumps(document["goods"], ensure_ascii=False))
+    hashMap.put("NOSQLResult", json.dumps(document, ensure_ascii=False))
 
     return hashMap
