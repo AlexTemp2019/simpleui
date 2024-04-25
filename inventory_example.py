@@ -95,7 +95,7 @@ jdocs = {"customcards":         {
                     "width": "wrap_content",
                     "height": "wrap_content",
                     "weight": 0
-                }
+            }
         ]
     }
 
@@ -481,6 +481,8 @@ def add_to_base(hashMap, _files=None, _data=None):
     doc_txt = json.dumps(doc, ensure_ascii=False)
     # hashMap.put("toast", doc_txt)
     db[collection].clear()
+    hashMap.put("toast", f"База {collection} очищена")
+
     res = db[collection].insert(doc, upsert=True)
     # hashMap.put("toast", str(res))
 
