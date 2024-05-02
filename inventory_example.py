@@ -479,12 +479,12 @@ def add_to_base(hashMap, _files=None, _data=None):
         if 'cb1' in line and (line['cb1'] == 'true' or True):
             doc.append(line['doc_bd'])
     doc_txt = json.dumps(doc, ensure_ascii=False)
-    # hashMap.put("toast", doc_txt)
+    hashMap.put("toast", doc_txt)
     db[collection].clear()
     hashMap.put("toast", f"База {collection} очищена")
 
     res = db[collection].insert(doc, upsert=True)
-    # hashMap.put("toast", str(res))
+    hashMap.put("toast", str(res))
 
     return hashMap
 
@@ -497,6 +497,7 @@ def download_from_DT(hashMap, _files=None, _data=None):
         collection = 'inventory'
 
     document = db[collection].get(hashMap.get("selected_card_key"))
+    hashMap.put("toast", json.dumps(document, ensure_ascii=False))
     hashMap.put("NOSQLResult", json.dumps(document, ensure_ascii=False))
 
     return hashMap
