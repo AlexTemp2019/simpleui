@@ -330,10 +330,10 @@ def orders_open(hashMap, _files=None, _data=None):
 
     for line in document["goods"]:
         l = {"sku": line.get("nom"),
+             "charac": line.get("charac"),
              "barcode": line.get("barcode"),
              "qty": line.get("qty_plan"),
              "qty_fact": line.get("qty")
-
              }
         jtable["customtable"]["tabledata"].append(l)
 
