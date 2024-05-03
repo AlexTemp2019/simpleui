@@ -298,7 +298,7 @@ def orders_list_click(hashMap, _files=None, _data=None):
     global document
 
     document = db['orders'].get(hashMap.get("selected_card_key"))
-    # hashMap.put("toast", hashMap.get("selected_card_key"))
+    hashMap.put("toast", hashMap.get("selected_card_key"))
 
     hashMap.put("ShowScreen", "Сборка заказа")
 
@@ -460,7 +460,7 @@ def orders_input(hashMap, _files=None, _data=None):
         hashMap.put("toast", str(pos))
         if pos > -1:
             document["goods"][pos]["qty"] = hashMap.get("qty")
-            db['inventory'].insert(document, upsert=True)
+            db['orders'].insert(document, upsert=True)
 
     return hashMap
 
