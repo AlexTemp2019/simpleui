@@ -472,6 +472,8 @@ def add_to_base(hashMap, _files=None, _data=None):
     else:
         collection = 'inventory'
 
+    hashMap.put("toast", str(res))
+
     doc = []
     cards = json.loads(hashMap.get("cards"))
     goods = cards["customcards"]["cardsdata"]
@@ -490,7 +492,7 @@ def add_to_base(hashMap, _files=None, _data=None):
 
 
 def download_from_DT(hashMap, _files=None, _data=None):
-    if hashMap.get("current_operation_name") == "Загрузка заказов":
+    if hashMap.get("current_operation_name") == "Сборка заказов":
         hashMap.put("toast", "это Загрузка")
         collection = 'orders'
     else:

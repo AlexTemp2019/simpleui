@@ -4,6 +4,19 @@ from pathlib import Path
 import json
 import android
 
+if hashMap.get("current_operation_name") == "Сборка заказов":
+    hashMap.put("toast", "это Загрузка")
+    collection = 'orders'
+else:
+    collection = 'inventory'
+
+hashMap.put("collection", collection)
+android.stop(hashMap)
+document = db[collection].get(hashMap.get("selected_card_key"))
+hashMap.put("toast", json.dumps(document, ensure_ascii=False))
+android.stop(hashMap)
+hashMap.put("NOSQLResult", json.dumps(document, ensure_ascii=False))
+
 jdocs = {"customcards":         {
     "options": {
         "search_enabled": True,
